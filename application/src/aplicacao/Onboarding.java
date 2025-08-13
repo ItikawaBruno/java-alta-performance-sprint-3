@@ -6,10 +6,8 @@ import java.util.Scanner;
 
 import domain.Colaborador;
 import listas.ListaCrescenteColaborador;
-import listas.ListaCrescenteInt;
 
 public class Onboarding {
-	public static Scanner le = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
@@ -27,6 +25,7 @@ public class Onboarding {
 			System.out.println("3 - Inserir novo colaborador");
 			System.out.println("Opcao: ");
 			opcao = le.nextInt();
+			le.nextLine();
 			switch (opcao) {
 				case 1:
 					lista.show();
@@ -34,8 +33,10 @@ public class Onboarding {
 				case 2:
 					System.out.println("Digite o ID do colaborador que deseja atualizar a nota: ");
 					int id = le.nextInt();
-					System.out.println("Digite o ID do colaborador que deseja atualizar a nota: ");
+					le.nextLine();
+					System.out.println("Digite a nota atualizada: ");
 					int nota = le.nextInt();
+					le.nextLine();
 					lista.atualiza(id, nota);
 					break;
 				case 3:
@@ -47,11 +48,12 @@ public class Onboarding {
 					String setor = le.next();
 					System.out.println("Digite o nome do buddy: ");
 					String buddy = le.next();
+					le.next();
 					System.out.println("Digite a nota do colaborador: ");
 					int notaColab = le.nextInt();
 					lista.add(new Colaborador(idColab,nome, buddy, setor, notaColab));
 					break;
-				default: System.out.println("Opcao Invalida");
+				default: System.out.println("Opcao DInvalida");
 			}
 
 		} while (opcao != 0);
@@ -61,15 +63,8 @@ public class Onboarding {
 	}
 
 	public static void geraLista(ListaCrescenteColaborador lista) {
-/*Altere esse metodo para inserir um objeto da classe Colaborador na lista*/
-		String caminhoDoArquivo = "java-alta-performance-sprint-3-main/src/arquivos/Colaboradores.txt";
-		
-		try {
-			// Criar um objeto File com o caminho do arquivo
-			File arquivo = new File(caminhoDoArquivo);
-
-			// Criar um Scanner para ler o arquivo
-			Scanner leArq = new Scanner(arquivo);
+		/*Altere esse metodo para inserir um objeto da classe Colaborador na lista*/
+		try (Scanner leArq = new Scanner(Onboarding.class.getResourceAsStream("/arquivos/Colaboradores.txt"))) {
 
 			// Loop para ler linha por linha at� o final do arquivo
 			while (leArq.hasNextLine()) {
@@ -86,11 +81,14 @@ public class Onboarding {
 			}
 			// Fechar o objeto da classe Scanner le
 			leArq.close();
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			// Caso o arquivo n�o seja encontrado
 			System.out.println("Arquivo n�o encontrado: " + e.getMessage());
 		}
 	}
 
-	
+
+
+
+
 }

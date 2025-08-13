@@ -44,7 +44,7 @@ public class ListaCrescenteColaborador {
             NO aux = lista;
             boolean achou = false;
             while (aux.prox != null && !achou) {
-                if (aux.prox.dado.getId() < novo.dado.getId())
+                if (aux.prox.dado.getNota() < novo.dado.getNota())
                     aux = aux.prox;
                 else
                     achou = true;
@@ -70,7 +70,7 @@ public class ListaCrescenteColaborador {
                     colaborador = atual.dado;
                     colaborador.setNota(nota);
                     remove(colaborador);
-                    achou = false;
+                    achou = true;
                 }
             }
         }
@@ -80,9 +80,12 @@ public class ListaCrescenteColaborador {
     public void show() {
         NO aux = lista;
         System.out.println("*********** Lista ************");
-        for (int i = 0; i < 5; i++){
+        int cont = 0;
+        while(aux.prox != null && cont < 3){
             System.out.print(aux.dado + "\t");
+            System.out.println("\n");
             aux = aux.prox;
+            cont++;
         }
         System.out.println();
     }
