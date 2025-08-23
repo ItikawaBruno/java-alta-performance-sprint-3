@@ -53,7 +53,9 @@ public class Onboarding {
 					int notaColab = le.nextInt();
 					lista.add(new Colaborador(idColab,nome, buddy, setor, notaColab));
 					break;
-				default: System.out.println("Opcao DInvalida");
+				case 0:
+					System.out.println("Saindo...");
+				default: System.out.println("Opcao Invalida");
 			}
 
 		} while (opcao != 0);
