@@ -54,27 +54,20 @@ public class ListaCrescenteColaborador {
         }
     }
 
-    public void atualiza(int id, int nota){
+    public void atualiza(int id, int nota) {
         NO atual = lista;
         Colaborador colaborador = null;
-        if(id == atual.dado.getId()){
-            colaborador = lista.dado;
-            colaborador.setNota(nota);
-            remove(colaborador);
-        }else{
-            boolean achou = false;
-            while (atual.prox != null && !achou) {
-                if(atual.dado.getId() == id){
-                    atual = atual.prox;
-                }else{
-                    colaborador = atual.dado;
-                    colaborador.setNota(nota);
-                    remove(colaborador);
-                    achou = true;
-                }
+
+        while (atual != null) {
+            if (id == atual.dado.getId()) {
+                colaborador = atual.dado;
+                colaborador.setNota(nota);
+                remove(colaborador);
+                add(colaborador);
+                return;
             }
+            atual = atual.prox;
         }
-        add(colaborador);
     }
 
     public void show() {

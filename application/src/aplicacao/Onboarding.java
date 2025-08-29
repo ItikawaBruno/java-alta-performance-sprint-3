@@ -42,15 +42,16 @@ public class Onboarding {
 				case 3:
 					System.out.println("Digite o ID do colaborador: ");
 					int idColab = le.nextInt();
+					le.nextLine();
 					System.out.println("Digite o nome do colaborador: ");
 					String nome = le.next();
 					System.out.println("Digite o setor do colaborador: ");
 					String setor = le.next();
 					System.out.println("Digite o nome do buddy: ");
 					String buddy = le.next();
-					le.next();
 					System.out.println("Digite a nota do colaborador: ");
 					int notaColab = le.nextInt();
+					le.nextLine();
 					lista.add(new Colaborador(idColab,nome, buddy, setor, notaColab));
 					break;
 				case 0:
